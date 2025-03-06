@@ -3,6 +3,7 @@ import 'package:swypex_currency/Features/exchange_rates/data/models/exchange_rat
 import 'package:swypex_currency/core/utils/app_colors.dart';
 import 'package:swypex_currency/core/utils/text_styles.dart';
 
+// widget that displays exchange rate data in a table format.
 class ExchangeRateTable extends StatelessWidget {
   final List<ExchangeRate> rates;
   final int currentPage;
@@ -22,15 +23,18 @@ class ExchangeRateTable extends StatelessWidget {
       headingRowHeight: 28,
       dataRowMinHeight: 20,
       dataRowMaxHeight: 30,
-      headingRowColor: WidgetStateColor.resolveWith(
-          (states) => AppColors.lightSecondaryColor),
+      headingRowColor:
+          WidgetStateColor.resolveWith(// Styling the table header row color
+              (states) => AppColors.lightSecondaryColor),
       border: const TableBorder(
+        // defining table borders for better UI structure
         top: BorderSide(color: Colors.black, width: 1.5),
         bottom: BorderSide(color: Colors.black, width: 1.5),
         left: BorderSide(color: Colors.black, width: 1.5),
         right: BorderSide(color: Colors.black, width: 1.5),
         verticalInside: BorderSide(color: Colors.black, width: 1.5),
       ),
+      // defining table columns with appropriate styling
       columns: [
         DataColumn(label: Text("Date", style: Styles.styleBold18(context))),
         DataColumn(label: Text("From", style: Styles.styleBold18(context))),
@@ -38,6 +42,7 @@ class ExchangeRateTable extends StatelessWidget {
         DataColumn(label: Text("Price", style: Styles.styleBold18(context))),
       ],
       rows: List.generate(rates.length, (index) {
+        // generating rows dynamically based on the rates list
         final rate = rates[index];
         final globalIndex = ((currentPage - 1) * rowsPerPage) + index;
 

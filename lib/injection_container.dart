@@ -16,7 +16,7 @@ final serviceLocator = sl;
 
 BaseOptions _dioOptions() {
   return BaseOptions(
-    baseUrl: EndPoints.baseUrl, // Base URL
+    baseUrl: EndPoints.baseUrl,
     connectTimeout: const Duration(seconds: 50),
     receiveTimeout: const Duration(seconds: 50),
     sendTimeout: const Duration(seconds: 50),

@@ -10,9 +10,10 @@ class SwypexCurrency extends StatelessWidget {
     return OverlaySupport.global(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: onGenerateRoute,
+        onGenerateRoute: onGenerateRoute, // Handles dynamic route generation.
         theme: ThemeData(primarySwatch: Colors.blue),
-        initialRoute: CurrencyExchangeScreen.routeName,
+        initialRoute:
+            CurrencyExchangeScreen.routeName, // Sets the default screen.
       ),
     );
   }

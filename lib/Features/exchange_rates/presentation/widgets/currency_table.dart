@@ -3,11 +3,13 @@ import 'package:swypex_currency/Features/exchange_rates/data/models/exchange_rat
 import 'package:swypex_currency/Features/exchange_rates/presentation/widgets/exchange_rate_table.dart';
 import 'package:swypex_currency/Features/exchange_rates/presentation/widgets/pagination_controls.dart';
 
+// a widget that displays the currency exchange table along with pagination controls
 class CurrencyTable extends StatelessWidget {
-  final List<ExchangeRate> rates;
-  final int currentPage;
-  final int totalRatesCount;
-  final int rowsPerPage;
+  final List<ExchangeRate> rates; // list of exchange rate data to display
+  final int currentPage; //The current page index for pagination
+  final int
+      totalRatesCount; //the total number of exchange rate entries available
+  final int rowsPerPage; //the number of rows displayed per page
 
   const CurrencyTable({
     super.key,
@@ -22,6 +24,7 @@ class CurrencyTable extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        // displays the exchange rate table with scrollable horizontal view
         Flexible(
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -35,6 +38,7 @@ class CurrencyTable extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
+        // displays pagination controls to navigate between pages
         PaginationControls(
           currentPage: currentPage,
           totalRatesCount: totalRatesCount,

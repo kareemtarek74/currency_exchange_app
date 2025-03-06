@@ -4,6 +4,7 @@ import 'package:swypex_currency/Features/exchange_rates/domain/Repos/exchange_ra
 import 'package:swypex_currency/core/Api/failure.dart';
 import 'package:swypex_currency/injection_container.dart';
 
+// use case for Fetching Exchange Rates which acts as an intermediary between the UI layer and the repository layer. It ensures that business logic is kept separate from the Ui
 class FetchExchangeRatesUseCase {
   final ExchangeRateRepository _repo = serviceLocator<ExchangeRateRepository>();
 

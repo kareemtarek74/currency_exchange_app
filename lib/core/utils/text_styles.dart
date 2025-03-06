@@ -9,30 +9,6 @@ abstract class Styles {
     );
   }
 
-  static TextStyle styleMedium16(BuildContext context) {
-    return TextStyle(
-      fontSize: getResoponsiveFontSize(context, fontSize: 16),
-      fontWeight: FontWeight.w500,
-      fontFamily: 'DM Sans',
-    );
-  }
-
-  static TextStyle styleMedium12(BuildContext context) {
-    return TextStyle(
-      fontSize: getResoponsiveFontSize(context, fontSize: 12),
-      fontWeight: FontWeight.w500,
-      fontFamily: 'DM Sans',
-    );
-  }
-
-  static TextStyle styleRegular12(BuildContext context) {
-    return TextStyle(
-      fontSize: getResoponsiveFontSize(context, fontSize: 12),
-      fontWeight: FontWeight.w400,
-      fontFamily: 'DM Sans',
-    );
-  }
-
   static TextStyle styleBold16(BuildContext context) {
     return TextStyle(
       fontSize: getResoponsiveFontSize(context, fontSize: 16),
@@ -49,14 +25,6 @@ abstract class Styles {
     );
   }
 
-  static TextStyle styleBold24(BuildContext context) {
-    return TextStyle(
-      fontSize: getResoponsiveFontSize(context, fontSize: 24),
-      fontWeight: FontWeight.w700,
-      fontFamily: 'DM Sans',
-    );
-  }
-
   static TextStyle styleRegular16(BuildContext context) {
     return TextStyle(
       fontSize: getResoponsiveFontSize(context, fontSize: 16),
@@ -65,42 +33,10 @@ abstract class Styles {
     );
   }
 
-  static TextStyle styleBold19(BuildContext context) {
-    return TextStyle(
-      fontSize: getResoponsiveFontSize(context, fontSize: 19),
-      fontWeight: FontWeight.w700,
-      fontFamily: 'DM Sans',
-    );
-  }
-
   static TextStyle styleBold14(BuildContext context) {
     return TextStyle(
       fontSize: getResoponsiveFontSize(context, fontSize: 14),
       fontWeight: FontWeight.w700,
-      fontFamily: 'DM Sans',
-    );
-  }
-
-  static TextStyle styleMedium14(BuildContext context) {
-    return TextStyle(
-      fontSize: getResoponsiveFontSize(context, fontSize: 14),
-      fontWeight: FontWeight.w500,
-      fontFamily: 'DM Sans',
-    );
-  }
-
-  static TextStyle styleRegular9(BuildContext context) {
-    return TextStyle(
-      fontSize: getResoponsiveFontSize(context, fontSize: 9),
-      fontWeight: FontWeight.w400,
-      fontFamily: 'DM Sans',
-    );
-  }
-
-  static TextStyle styleMedium19(BuildContext context) {
-    return TextStyle(
-      fontSize: getResoponsiveFontSize(context, fontSize: 19),
-      fontWeight: FontWeight.w500,
       fontFamily: 'DM Sans',
     );
   }

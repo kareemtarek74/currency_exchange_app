@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swypex_currency/Features/exchange_rates/presentation/cubits/exchange_rate/exchange_rate_cubit.dart';
 import 'package:swypex_currency/core/utils/app_colors.dart';
 
+//provides pagination controls for navigating
 class PaginationControls extends StatelessWidget {
   final int currentPage;
   final int totalRatesCount;
@@ -25,6 +26,7 @@ class PaginationControls extends StatelessWidget {
       ),
       child: Row(
         children: [
+          // left Pagination Button (previous Page)
           Expanded(
             child: InkWell(
               onTap: currentPage > 1
@@ -34,7 +36,8 @@ class PaginationControls extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: currentPage > 1
                       ? Colors.blue.shade200
-                      : AppColors.lightSecondaryColor,
+                      : AppColors
+                          .lightSecondaryColor, // changes color based on page state
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.black,
@@ -49,6 +52,7 @@ class PaginationControls extends StatelessWidget {
             ),
           ),
           Container(width: 1.5, color: Colors.black),
+          // right Pagination Button (next Page)
           Expanded(
             child: InkWell(
               onTap: (currentPage * rowsPerPage) < totalRatesCount

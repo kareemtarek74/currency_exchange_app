@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:swypex_currency/Features/exchange_rates/presentation/controllers/exchange_rate_controller.dart';
-import 'package:swypex_currency/Features/exchange_rates/presentation/widgets/custom_button.dart';
-import 'package:swypex_currency/Features/exchange_rates/presentation/widgets/custom_drop_down.dart';
 import 'package:swypex_currency/core/utils/app_colors.dart';
+import 'package:swypex_currency/core/widgets/custom_button.dart';
+import 'package:swypex_currency/core/widgets/custom_drop_down.dart';
 
+// It includes date pickers and currency selection dropdowns.
 class ExchangeRateFilters extends StatelessWidget {
   final ExchangeRateController exchangeRateController;
   final VoidCallback onUpdate;
@@ -35,7 +36,7 @@ class ExchangeRateFilters extends StatelessWidget {
                         onPressed: () => exchangeRateController.selectDate(
                           context,
                           true,
-                          onUpdate,
+                          onUpdate, // Trigger state update after date selection
                         ),
                       ),
                     ),
@@ -47,13 +48,14 @@ class ExchangeRateFilters extends StatelessWidget {
                         onPressed: () => exchangeRateController.selectDate(
                           context,
                           false,
-                          onUpdate,
+                          onUpdate, // Trigger state update after date selection
                         ),
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 20),
+                // Row for selecting the currencies
                 Row(
                   children: [
                     Expanded(
@@ -62,7 +64,7 @@ class ExchangeRateFilters extends StatelessWidget {
                         items: exchangeRateController.fromCurrencies,
                         onChanged: (value) {
                           exchangeRateController.fromCurrency = value!;
-                          onUpdate();
+                          onUpdate(); // Update state when selection changes
                         },
                       ),
                     ),
@@ -72,7 +74,7 @@ class ExchangeRateFilters extends StatelessWidget {
                         items: exchangeRateController.toCurrencies,
                         onChanged: (value) {
                           exchangeRateController.toCurrency = value!;
-                          onUpdate();
+                          onUpdate(); // Update state when selection changes
                         },
                       ),
                     ),
@@ -82,6 +84,7 @@ class ExchangeRateFilters extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
+          // Submit button to fetch exchange rates
           SizedBox(
             width: MediaQuery.sizeOf(context).width * .27,
             height: 36,
@@ -89,7 +92,7 @@ class ExchangeRateFilters extends StatelessWidget {
               text: "Submit",
               onPressed: () =>
                   exchangeRateController.fetchExchangeRates(context),
-              backgroundColor: AppColors.lightPrimaryColor,
+              backgroundColor: AppColors.primaryColor,
             ),
           ),
         ],

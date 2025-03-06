@@ -7,6 +7,7 @@ import 'package:swypex_currency/injection_container.dart';
 
 part 'exchange_rate_state.dart';
 
+// cubit responsible for managing exchange rate state that handles: fetching exchange rates from API, implementing pagination, debouncing requests to avoid excessive API calls.
 class ExchangeRateCubit extends Cubit<ExchangeRateState> {
   final FetchExchangeRatesUseCase _useCase =
       serviceLocator<FetchExchangeRatesUseCase>();
@@ -14,12 +15,16 @@ class ExchangeRateCubit extends Cubit<ExchangeRateState> {
   List<ExchangeRate> allRates = [];
   int currentPage = 1;
   final int rowsPerPage = 10;
-  Timer? debounceTimer;
+  Timer? debounceTimer; // timer used for debouncing API requests
 
-  ExchangeRateCubit() : super(ExchangeRateInitial());
+  ExchangeRateCubit()
+      : super(
+            ExchangeRateInitial()); // initializes the cubit with an initial state
 
-  int get totalItems => allRates.length;
+  int get totalItems => allRates
+      .length; // returns the total number of exchange rate records fetched
 
+  // fetches exchange rates with debouncing to prevent excessive API calls, debounce delay: 500ms
   void loadExchangeRates(
       String startDate, String endDate, String from, String to) {
     debounceTimer?.cancel();
@@ -44,6 +49,7 @@ class ExchangeRateCubit extends Cubit<ExchangeRateState> {
     });
   }
 
+// moves to the next page if more data is available
   void nextPage() {
     if ((currentPage * rowsPerPage) < allRates.length) {
       currentPage++;
@@ -51,6 +57,7 @@ class ExchangeRateCubit extends Cubit<ExchangeRateState> {
     }
   }
 
+// moves to the previous page if not on the first page
   void previousPage() {
     if (currentPage > 1) {
       currentPage--;
@@ -58,9 +65,13 @@ class ExchangeRateCubit extends Cubit<ExchangeRateState> {
     }
   }
 
+// emits the paginated exchange rates to the ui
   void emitPagedData() {
     final startIndex = (currentPage - 1) * rowsPerPage;
-    final pagedData = allRates.skip(startIndex).take(rowsPerPage).toList();
+    final pagedData = allRates
+        .skip(startIndex)
+        .take(rowsPerPage)
+        .toList(); // Uses skip and take to fetch only relevant data for the page
     emit(ExchangeRateLoaded(
       rates: pagedData,
       currentPage: currentPage,

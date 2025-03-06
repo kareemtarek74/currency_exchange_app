@@ -7,6 +7,7 @@ import 'package:swypex_currency/core/Api/failure.dart';
 import 'package:swypex_currency/core/Api/failure_handler.dart';
 import 'package:swypex_currency/injection_container.dart';
 
+// implementation of the ExchangeRateRepository that is responsible for handling data retrieval from the remote data source and managing error handling using a failure handler.
 class ExchangeRateRepositoryImpl implements ExchangeRateRepository {
   final ExchangeRateRemoteDataSource _remoteDataSource =
       serviceLocator<ExchangeRateRemoteDataSource>();
@@ -19,6 +20,7 @@ class ExchangeRateRepositoryImpl implements ExchangeRateRepository {
           startDate, endDate, from, to);
       return Right(remoteData);
     } on DioException catch (e) {
+      // if a DioException occurs, it is processed using _failureHandler
       final failure = _failureHandler.getFailureType(e);
       return Left(failure);
     }

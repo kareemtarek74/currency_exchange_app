@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+// A shimmer loading effect to simulate the loading state of the currency table
 class ShimmerLoadingWidget extends StatelessWidget {
   const ShimmerLoadingWidget({super.key});
 
@@ -8,6 +9,7 @@ class ShimmerLoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // Creates a shimmering effect for the table header
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Shimmer.fromColors(
@@ -24,13 +26,14 @@ class ShimmerLoadingWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
+        // Creates shimmer placeholders for table rows
         Expanded(
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Column(
               children: [
-                buildShimmerHeader(),
-                buildShimmerRows(),
+                buildShimmerHeader(), // Header shimmer effect
+                buildShimmerRows(), // Rows shimmer effect
               ],
             ),
           ),
@@ -39,6 +42,7 @@ class ShimmerLoadingWidget extends StatelessWidget {
     );
   }
 
+// Builds a shimmer effect for the table header to match actual table structure
   Widget buildShimmerHeader() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -46,7 +50,7 @@ class ShimmerLoadingWidget extends StatelessWidget {
         children: List.generate(4, (index) {
           return Container(
             height: 28,
-            width: getColumnWidth(index),
+            width: getColumnWidth(index), // adjusts width based on column index
             margin: const EdgeInsets.symmetric(horizontal: 4),
             decoration: BoxDecoration(
               color: Colors.grey[300],
@@ -58,6 +62,7 @@ class ShimmerLoadingWidget extends StatelessWidget {
     );
   }
 
+// build a shimmer effect for the table rows, ensuring proper alignment
   Widget buildShimmerRows() {
     return Column(
       children: List.generate(5, (index) {
@@ -70,7 +75,7 @@ class ShimmerLoadingWidget extends StatelessWidget {
                 highlightColor: Colors.grey[100]!,
                 child: Container(
                   height: 30,
-                  width: getColumnWidth(colIndex),
+                  width: getColumnWidth(colIndex), // matches table column width
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -85,6 +90,7 @@ class ShimmerLoadingWidget extends StatelessWidget {
     );
   }
 
+// returns dynamic column width to match the actual table structure
   double getColumnWidth(int index) {
     switch (index) {
       case 0:
