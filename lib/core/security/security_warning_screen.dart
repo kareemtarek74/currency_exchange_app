@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:swypex_currency/core/models/security_issue.dart';
+import 'package:swypex_currency/core/security/security_issue_model.dart';
 
 class SecurityWarningScreen extends StatelessWidget {
   final List<SecurityIssue> securityIssues;
@@ -30,15 +30,11 @@ class SecurityWarningScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-
-                // 📝 نص توضيحي
                 const Text(
                   "Your device has security risks. Please review the details below:",
                   style: TextStyle(fontSize: 16, color: Colors.black87),
                 ),
                 const SizedBox(height: 20),
-
-                // ⚠️ قائمة التحذيرات الأمنية بتصميم أفضل
                 Expanded(
                   child: ListView.builder(
                     itemCount: securityIssues.length,
@@ -86,10 +82,7 @@ class SecurityWarningScreen extends StatelessWidget {
                     },
                   ),
                 ),
-
                 const SizedBox(height: 20),
-
-                // 🔴 زر الخروج بتصميم أكثر حداثة
                 Center(
                   child: ElevatedButton(
                     onPressed: _exitApp,
@@ -116,8 +109,7 @@ class SecurityWarningScreen extends StatelessWidget {
     );
   }
 
-  // 🛑 دالة إغلاق التطبيق بالكامل
   void _exitApp() {
-    SystemNavigator.pop(); // إغلاق التطبيق
+    SystemNavigator.pop();
   }
 }

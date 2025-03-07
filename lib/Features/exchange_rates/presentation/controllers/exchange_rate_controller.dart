@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:swypex_currency/Features/exchange_rates/presentation/cubits/exchange_rate/exchange_rate_cubit.dart';
 
-// Controller responsible for handling user interactions related to exchange rate selection
+// controller responsible for handling user interactions related to exchange rate selection
 class ExchangeRateController {
   DateTime? startDate;
   DateTime? endDate;
@@ -13,7 +13,7 @@ class ExchangeRateController {
   final List<String> fromCurrencies = ["USD", "EGP"];
   final List<String> toCurrencies = ["EGP"];
 
-  // Opens a date picker for the user to select a start or end date
+  // opens a date picker for the user to select a start or end date
   void selectDate(
       BuildContext context, bool isStartDate, VoidCallback updateState) async {
     DateTime? picked = await showDatePicker(
@@ -21,7 +21,7 @@ class ExchangeRateController {
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime.now().add(const Duration(
-          days: 1)), // Prevent selecting future dates to not choose wrong dates
+          days: 1)), // prevent selecting future dates to not choose wrong dates
       builder: (context, child) {
         return Theme(
           data: ThemeData(
@@ -48,7 +48,7 @@ class ExchangeRateController {
       } else {
         endDate = picked;
       }
-      updateState(); // Trigger UI update after date selection
+      updateState(); // trigger UI update after date selection
     }
   }
 

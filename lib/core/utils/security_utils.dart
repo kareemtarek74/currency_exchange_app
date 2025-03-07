@@ -1,5 +1,5 @@
 import 'package:safe_device/safe_device.dart';
-import 'package:swypex_currency/core/models/security_issue.dart';
+import 'package:swypex_currency/core/security/security_issue_model.dart';
 
 class SecurityUtils {
   static Future<List<SecurityIssue>> checkDeviceSecurity() async {
@@ -33,13 +33,13 @@ class SecurityUtils {
         message: "Mock location is enabled. Disable it to use the app.",
       ));
     }
-
-    if (isDevelopmentMode) {
+    // i commented it to make you can run the code
+    /* if (isDevelopmentMode) {
       issues.add(SecurityIssue(
         title: "Developer Mode Enabled",
         message: "Developer mode is enabled. Disable it to proceed.",
       ));
-    }
+    } */
 
     if (hasMaliciousApps) {
       issues.add(SecurityIssue(
@@ -48,6 +48,6 @@ class SecurityUtils {
       ));
     }
 
-    return issues; // سيتم إرجاع قائمة بالمشاكل، وإن لم تكن هناك مشاكل ستعود فارغة
+    return issues; // if there are any problem will be returned and if there are not any problems will return embty
   }
 }
