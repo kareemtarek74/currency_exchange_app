@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:swypex_currency/core/security/security_issue_card.dart';
 import 'package:swypex_currency/core/security/security_issue_model.dart';
 
 class SecurityWarningScreen extends StatelessWidget {
@@ -35,53 +36,7 @@ class SecurityWarningScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.black87),
                 ),
                 const SizedBox(height: 20),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: securityIssues.length,
-                    itemBuilder: (context, index) {
-                      final issue = securityIssues[index];
-                      return Card(
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        margin: const EdgeInsets.symmetric(vertical: 8),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.warning_amber_rounded,
-                                  color: Colors.orange, size: 32),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      issue.title,
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 6),
-                                    Text(
-                                      issue.message,
-                                      style: const TextStyle(
-                                          fontSize: 16, color: Colors.black87),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                SecurityIssueCard(securityIssues: securityIssues),
                 const SizedBox(height: 20),
                 Center(
                   child: ElevatedButton(

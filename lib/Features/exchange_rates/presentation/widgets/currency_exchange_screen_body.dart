@@ -19,6 +19,10 @@ class CurrencyExchangeScreenBody extends StatefulWidget {
 
 class CurrencyExchangeScreenBodyState
     extends State<CurrencyExchangeScreenBody> {
+  static const double topPadding = 64.0;
+  static const double filterSpacing = 20.0;
+  static const int rowsPerPage = 10;
+
   final ExchangeRateController exchangeRateController =
       ExchangeRateController(); // Controller to manage date selection and currency dropdowns.
 
@@ -28,7 +32,7 @@ class CurrencyExchangeScreenBodyState
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          const SizedBox(height: 64),
+          const SizedBox(height: topPadding),
           // Widget for selecting dates and currencies
           ExchangeRateFilters(
             exchangeRateController: exchangeRateController,
@@ -36,40 +40,33 @@ class CurrencyExchangeScreenBodyState
               setState(() {}); // Update UI after user interaction
             },
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: filterSpacing),
           // Displays data based on the state of the ExchangeRateCubit
           Expanded(
             child: BlocBuilder<ExchangeRateCubit, ExchangeRateState>(
               builder: (context, state) {
-                if (state is ExchangeRateLoading) {
-                  return const ShimmerLoadingWidget(); // Loading state UI
-                } else if (state is ExchangeRateLoaded) {
-                  return CurrencyTable(
-                    rates: state.rates,
-                    currentPage: state.currentPage,
-                    totalRatesCount: state.totalRatesCount,
-                    rowsPerPage: 10,
-                  ); // Table displaying fetched data
-                } else if (state is ExchangeRateNoData) {
-                  return const Center(
-                      child: Text(AppStrings.emptyDataError,
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 16))); // No data message
-                } else if (state is ExchangeRateError) {
-                  return Center(
-                      child: Text(state.message,
-                          style: const TextStyle(
-                              color: Colors.red))); // Error message
-                }
-                // Initial state: Prompts user to select a date range
-                return EmptyStateWidget(
-                  onPickDate: () {
-                    exchangeRateController.selectDate(context, true, () {
-                      setState(() {});
-                    });
-                  },
-                );
+                return switch (state) {
+                  ExchangeRateLoading() => const ShimmerLoadingWidget(),
+                  ExchangeRateLoaded() => CurrencyTable(
+                      rates: state.rates,
+                      currentPage: state.currentPage,
+                      totalRatesCount: state.totalRatesCount,
+                      rowsPerPage: rowsPerPage,
+                    ),
+                  ExchangeRateNoData() => const Center(
+                      child: Text(
+                        AppStrings.emptyDataError,
+                        style: TextStyle(color: Colors.red, fontSize: 16),
+                      ),
+                    ),
+                  _ => EmptyStateWidget(
+                      onPickDate: () => exchangeRateController.selectDate(
+                        context,
+                        true,
+                        () => setState(() {}),
+                      ),
+                    ),
+                };
               },
             ),
           ),

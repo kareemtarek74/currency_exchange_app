@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:swypex_currency/Features/exchange_rates/presentation/controllers/exchange_rate_controller.dart';
+import 'package:swypex_currency/Features/exchange_rates/presentation/widgets/currency_selectors.dart';
+import 'package:swypex_currency/Features/exchange_rates/presentation/widgets/date_selectors.dart';
 import 'package:swypex_currency/core/utils/app_colors.dart';
 import 'package:swypex_currency/core/widgets/custom_button.dart';
-import 'package:swypex_currency/core/widgets/custom_drop_down.dart';
 
 // It includes date pickers and currency selection dropdowns.
 class ExchangeRateFilters extends StatelessWidget {
@@ -26,60 +26,14 @@ class ExchangeRateFilters extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomButton(
-                        text: exchangeRateController.startDate == null
-                            ? "Start Date"
-                            : "Start: ${DateFormat('yyyy-MM-dd').format(exchangeRateController.startDate!)}",
-                        onPressed: () => exchangeRateController.selectDate(
-                          context,
-                          true,
-                          onUpdate, // Trigger state update after date selection
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: CustomButton(
-                        text: exchangeRateController.endDate == null
-                            ? "End Date"
-                            : "End: ${DateFormat('yyyy-MM-dd').format(exchangeRateController.endDate!)}",
-                        onPressed: () => exchangeRateController.selectDate(
-                          context,
-                          false,
-                          onUpdate, // Trigger state update after date selection
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                DateSelectors(
+                    exchangeRateController: exchangeRateController,
+                    onUpdate: onUpdate),
                 const SizedBox(height: 20),
                 // Row for selecting the currencies
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomDropdown(
-                        value: exchangeRateController.fromCurrency,
-                        items: exchangeRateController.fromCurrencies,
-                        onChanged: (value) {
-                          exchangeRateController.fromCurrency = value!;
-                          onUpdate(); // Update state when selection changes
-                        },
-                      ),
-                    ),
-                    Expanded(
-                      child: CustomDropdown(
-                        value: exchangeRateController.toCurrency,
-                        items: exchangeRateController.toCurrencies,
-                        onChanged: (value) {
-                          exchangeRateController.toCurrency = value!;
-                          onUpdate(); // Update state when selection changes
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                CurrencySelectors(
+                    exchangeRateController: exchangeRateController,
+                    onUpdate: onUpdate),
               ],
             ),
           ),
